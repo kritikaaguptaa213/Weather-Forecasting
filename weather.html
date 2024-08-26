@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css" />
+</head>
+<style>
+    *{
+        margin: 0;
+        padding: 0;
+    }
+    .main{
+        background: linear-gradient(120deg,blueviolet,pink);
+        height: 100vh;
+        display: flex;
+        gap: 50px;
+        align-items: center;
+        justify-content: center;
+        transition: all 400ms;
+    }
+    .left{
+        background-color: rgb(93, 42, 141);
+        height: 550px;
+        width: 300px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        border-radius: 25px;
+        gap: 50px;
+        transform: translateX(27vw);
+        z-index: 2;
+        transition: all 1s ease-in-out;
+    }
+    .mid{
+        background-color: rgb(93, 42, 141);
+        height: 550px;
+        width: 300px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        border-radius: 25px;
+        gap: 50px;
+        z-index: 1;
+    }
+    .right{
+        background-color: rgb(93, 42, 141);
+        height: 515px;
+        width: 290px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        border-radius: 25px;
+        transform: translateX(-27vw);
+        z-index: 1;
+        transition: all 1s ease-in-out;
+        padding-top: 35px;
+        gap: 15px;
+    }
+    .wefo{
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+    }
+    button{
+        width: 90px;
+        height: 35px;
+        border-radius: 20px;
+        background-color: gold;
+    }
+    .weather{
+        color: white;
+        font-family: sans-serif;
+    }
+    .forecasts{
+        color: gold;
+        font-family: sans-serif;
+    }
+    .imgleft{
+        height: 250px;
+        width: 250px;
+    }
+    .imgmid{
+        height: 150px;
+        width: 150px;
+    }
+    .boxm{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        height: 250px;
+        width: 271px;
+        border-radius: 15px;
+        background-color: rgba(255, 255, 255, 0.5);
+        font-size: 35px;
+        color: white;
+        overflow: hidden;
+    }
+    .temp{
+        display: flex;
+        gap: 15px;
+        color: white;
+    }
+    #city{
+        border: none;
+        border-bottom: 2px solid white;
+        background-color: transparent;
+    }
+    .forecast{
+        color: white;
+        font-family: sans-serif;
+        padding-top: 5px;
+        padding-bottom: 5px;
+    }
+    .box1{
+        height:155px;
+        width: 245px;
+        border: 2px solid white;
+        border-radius: 5px;
+        padding: 10px;
+        font-size: 20px;
+    }
+    .box2{
+        display: flex;
+        gap: 10px;
+        padding-top: 7px;
+    }
+    .desc{
+        height:75px;
+        width: 100px;
+        border: 2px solid white;
+        border-radius: 5px;
+        padding: 10px;
+        font-size: 10px;
+    
+    }
+    .humd{
+        height:75px;
+        width: 100px;
+        border: 2px solid white;
+        border-radius: 5px;
+        padding: 10px;
+        font-size: 10px;
+    }
+    .city:focus{
+        outline: none;
+        background-color: transparent;
+        color: white;
+    }
+</style>
+<body>
+    <div class="main">
+
+        <div class="left" id="left">
+            <img src="weather.png" class="imgleft">
+            <div class="wefo">
+                <h1 class="weather">Weather</h1>
+                <h1 class="forecasts">Forecasts</h1>
+            </div>
+            <button onclick="change()">Get started</button>
+        </div>
+
+        <div class="mid">
+            <img src="weather.png" class="imgmid">
+            <div class="boxm">
+                <div class="date" id="date"></div>
+                <div class="time" id="time"></div>
+            </div>
+        </div>
+        
+        <div class="right" id="right">
+            <form id="ser">
+                <label for="city">
+                    <input type="text" class="city" id="city" ><i class="ti ti-search" style="color:white"></i>
+                </label>
+            </form>
+            <div class="temp">
+                <p>Max temp <p id="max" style="color: darkgray;"></p> </p>
+                <p>Min temp <p id="min" style="color: darkgray;"></p></p>
+            </div>
+            <h1 class="forecast">Day Forecast</h1>
+            <b><p id="temperature" style="font-size: 25px ; color:darkgrey;"></p></b>
+            <div class="box1">
+                <p style="color: white;"><i class="ti ti-current-location"></i>Air Speed</p>
+                <p id="speed" style="color: darkgray; display: flex; align-items: center; justify-content: center; font-size: 25px;"></p> 
+            </div>
+            <div class="box2">
+                <div class="desc">
+                    <p style="color: white;"><i class="ti ti-sun-filled"></i></i>DESCRIPTION</p>
+                    <p id="description" style="font-size: 20px; display: flex; align-items: center; justify-content: center; color:darkgrey;"></p>
+                </div>
+                <div class="humd">
+                    <p style="color: white;"><i class="ti ti-sun-filled"></i></i>HUMIDITY</p>
+                    <p id="humidity" style="font-size: 20px; display: flex; align-items: center; justify-content: center; color:darkgrey;"></p>
+                </div>
+            </div>
+        </div>
+        
+    </div>
+</body>
+<script>
+    
+    function change()
+    {
+            document.getElementById("left").style.transform="translate(0vw)"
+            document.getElementById("right").style.transform="translate(0vw)"
+    }
+
+    function date()
+    {
+        document.getElementById("date").innerHTML=new Date().toDateString().slice(4);
+    }
+    setInterval(date,1000)
+
+    function time() {
+        var time = new Date();
+        document.getElementById("time").innerText =
+            (time.getHours() > 12 ? time.getHours() - 12 : time.getHours()) + ":" +
+            time.getMinutes() + ":" +
+            time.getSeconds() + " " +
+            (time.getHours() > 12 ? "PM" : "AM");
+    }
+    setInterval(time, 1000)
+
+    var a = document.getElementById("city");
+    function data()
+    {
+        const url = `https://api.openweathermap.org/data/2.5/weather?q=${a.value}&units=metric&appid=8bd9d7fd7e0e889bbbb9d30e1c756cc2`
+        fetch(url).then((res) => res.json()).then((obt) => {
+            document.getElementById("max").innerText=obt.main.temp_max ;
+            document.getElementById("min").innerText=obt.main.temp_min ;
+            document.getElementById("temperature").innerText=obt.main.temp ;
+            document.getElementById("speed").innerText=obt.wind.speed
+            document.getElementById("description").innerText=obt.weather[0].description;
+            document.getElementById("humidity").innerText=obt.main.humidity;
+            console.log(obt)
+        });
+    }
+    var b = document.getElementById("ser");
+    b.addEventListener("submit" , (event) => {event.preventDefault();data()})
+</script>
+</html>
